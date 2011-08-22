@@ -16,7 +16,7 @@
 		Open EmployeeDAO.java and DatabaseInitializer.java for details. 
 	-->
 	<context:annotation-config />
-	<context:component-scan base-package="flex.spring.samples" />
+	<context:component-scan base-package="flex.samples.spring" />
 	
 	<!--
 		Simple Spring-managed DataSource for embedded h2 database

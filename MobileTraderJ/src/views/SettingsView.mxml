@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		title="Settings"
+		creationComplete="creationCompleteHandler()">
+	<fx:Script>
+		<![CDATA[
+			import components.ErrorDialog;
+			
+			import controller.Feed;
+			
+			import spark.managers.PersistenceManager;
+			
+			protected var persistenceManager:PersistenceManager = new PersistenceManager();;
+			
+			protected function creationCompleteHandler():void
+			{
+				messageBrokerURL.text = Feed.messageBrokerURL;
+				channelGroup.selectedValue = Feed.channel;
+			}
+			
+			protected function save():void
+			{
+				Feed.messageBrokerURL = messageBrokerURL.text;
+				Feed.channel = channelGroup.selectedValue as String;
+				persistenceManager.setProperty("messageBrokerURL", messageBrokerURL.text);
+				persistenceManager.setProperty("channel", channelGroup.selectedValue);
+				persistenceManager.save();
+			}
+			
+			protected function startFeed():void
+			{
+				feedManager.endpoint = messageBrokerURL.text + "/amf";
+				feedManager.start();
+			}
+			
+			protected function stopFeed():void
+			{
+				feedManager.endpoint = messageBrokerURL.text + "/amf";
+				feedManager.stop();
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:RadioButtonGroup id="channelGroup"/>
+		<s:RemoteObject id="feedManager" destination="feedManager"
+						fault="ErrorDialog.show(event.fault.faultString + ' ' + event.fault.faultDetail)"/>
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout paddingTop="20" paddingLeft="20" paddingRight="20" paddingBottom="20"/>
+	</s:layout>
+	
+	<s:Label text="Messagebroker base URL:"/>
+	<s:TextArea id="messageBrokerURL" text="http://localhost:8080/flex-java-mobile/messagebroker" width="100%" height="80"/>
+
+	<s:Spacer height="10"/>
+	
+	<s:Label text="Channel:"/>
+	<s:RadioButton label="Streaming" value="streamingamf" group="{channelGroup}"/>
+	<s:RadioButton label="Long Polling" value="amflongpolling" group="{channelGroup}"/>
+	<s:RadioButton label="Polling" value="amfpolling" group="{channelGroup}"/>
+	
+	<s:Spacer height="10"/>
+
+	<s:Button label="Apply" width="100%" click="save()"/>
+
+	<s:Spacer height="10"/>
+	
+	<s:Button label="Start Server Feed" width="100%" click="startFeed()"/>
+	<s:Button label="Stop Server Feed" width="100%" click="stopFeed()"/>
+	
+</s:View>

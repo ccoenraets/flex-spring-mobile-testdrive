@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+        xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" xmlns:assets="assets.*">
+    
+	<fx:Script>
+		<![CDATA[
+			[Embed("assets/FilterSkin.png",scaleGridTop="54",scaleGridBottom="136",scaleGridLeft="53",scaleGridRight="268")]
+			protected var bg:Class;
+
+		]]>
+	</fx:Script>
+	
+	
+	<fx:Metadata>
+    <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.SkinnablePopUpContainer")]
+		
+		
+		
+    ]]>
+    </fx:Metadata> 
+    
+    <s:states>
+        <s:State name="normal"/>
+        <s:State name="disabled"/>
+        <s:State name="closed" stateGroups="closedGroup"/>
+        <s:State name="disabledAndClosed" stateGroups="closedGroup"/>
+    </s:states>
+    
+    <!-- Transitions for open and close -->
+    <s:transitions>
+        <s:Transition fromState="closed" toState="normal" autoReverse="true">
+            <s:Fade duration="150" target="{chrome}"/>
+        </s:Transition>
+
+        <s:Transition fromState="disabledAndClosed" toState="disabled" autoReverse="true">
+            <s:Fade duration="150" target="{chrome}"/>
+        </s:Transition>
+        
+        <s:Transition fromState="normal" toState="closed" autoReverse="true">
+            <s:Fade duration="150" target="{chrome}"/>
+        </s:Transition>
+
+        <s:Transition fromState="disabled" toState="disabledAndClosed" autoReverse="true">
+            <s:Fade duration="150" target="{chrome}"/>
+        </s:Transition>
+    </s:transitions>
+        
+    <!--- Defines the background and content group used by this skin. -->
+    <s:Group id="chrome" left="0" right="0" top="0" bottom="0" visible.closedGroup="false">
+
+		<!-- Background and border - sets one corner rounded and adds a drop shadow filter-->
+		<!--
+		<s:Rect left="0" right="0" top="1" bottom="0" id="background" topRightRadiusX="15">
+			<s:filters>
+				<s:DropShadowFilter color="0x000000" blurX="20" />
+			</s:filters>
+			<s:fill> 
+				<s:SolidColor color="0xF9F1D3"/>
+			</s:fill>
+			<s:stroke>
+				<s:SolidColorStroke  weight="2" color="#323232" joints="bevel" alpha=".5"/>   
+			</s:stroke>
+		</s:Rect>
+		-->
+		
+		<!--
+		<assets:FilterSkin_blank top="0" bottom="0" left="0" right="0"/>
+        -->
+		
+		<s:Image source="@Embed('assets/PopupSkin.png',scaleGridTop='57',scaleGridBottom='338',scaleGridLeft='26',scaleGridRight='314')" top="0" bottom="0" left="0" right="0"/>
+        <!--
+        Note: Setting the minimum size to 0 here so that changes to the host component's
+        size will not be thwarted by this skin part's minimum size.   This is a compromise,
+        more about it here: http://bugs.adobe.com/jira/browse/SDK-21143
+        -->
+        <!--- @copy spark.components.SkinnableContainer#contentGroup -->
+        <s:Group id="contentGroup" left="10" right="10" top="10" bottom="10" minWidth="0" minHeight="0">
+            <s:layout>
+                <s:BasicLayout/>
+            </s:layout>
+        </s:Group>
+    </s:Group>
+    
+</s:Skin>

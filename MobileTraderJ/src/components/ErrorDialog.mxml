@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SkinnablePopUpContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+						   xmlns:s="library://ns.adobe.com/flex/spark"
+						   backgroundColor="#DCDCDC"
+						   skinClass="skins.MyPopupSkin" initialize="initializeHandler()" height="{btn.height + bc.height + 24}">
+	<fx:Script>
+		<![CDATA[
+			import mx.core.FlexGlobals;
+			import mx.managers.PopUpManager;
+			
+			import spark.components.Application;
+			
+			public static const RETRY:int = 1; 
+			public static const CANCEL:int = 0; 
+			
+			[Bindable]
+			public var text:String;
+						
+			public static function show(text:String):void
+			{
+				var popup:ErrorDialog = new ErrorDialog();
+				popup.text = text;
+				popup.open(FlexGlobals.topLevelApplication as DisplayObjectContainer, true);
+				PopUpManager.centerPopUp(popup);
+			}
+			
+			protected function initializeHandler():void
+			{
+				if (FlexGlobals.topLevelApplication.applicationDPI > 200)
+				{
+					width = 400;
+//					height = 300;
+				}
+				else
+				{
+					width = 300;
+//					height = 200;
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>	
+	
+	<s:BorderContainer id="bc" backgroundColor="#F0F0F0" width="100%">
+		<s:Label id="errorText" width="100%" text="{text}" verticalCenter="0" horizontalCenter="0" textAlign="center" paddingTop="8" paddingBottom="8" paddingLeft="8" paddingRight="8"/>
+	</s:BorderContainer>		
+	
+	<s:Button id="btn" label="OK" click="close(true)" styleName="popupButton" width="100%"/>
+		
+</s:SkinnablePopUpContainer>

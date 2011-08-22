@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Christophe Coenraets, http://coenraets.org -->
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:controller="controller.*"
+		width="100%" height="100%"
+		backgroundColor="#F0F0F0"
+ 	 	viewActivate="activateHandler()"
+		viewDeactivate="deactivateHandler()"
+		title="Watch List" xmlns:views="views.*" >
+	
+	<fx:Script>
+		<![CDATA[
+
+			import components.ErrorDialog;
+			
+			protected function activateHandler():void 
+			{
+				feed.subscribe();
+			}
+			
+			protected function deactivateHandler():void 
+			{
+				feed.unsubscribe();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		<controller:Feed id="feed" fault="ErrorDialog.show(event.faultDetail)"/>
+		
+	</fx:Declarations>
+	
+	<views:Header/>
+	
+	<s:List id="list" itemRenderer="renderers.StockRenderer" borderVisible="false" dataProvider="{feed.stockList}"
+			top="51" left="0" right="0" bottom="0"/>
+	
+</s:View>

@@ -1,0 +1,12 @@
+<objects 
+    xmlns="http://www.spicefactory.org/parsley"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.spicefactory.org/parsley 
+        http://www.spicefactory.org/parsley/schema/2.4/parsley-core.xsd">
+        
+	<object type="mx.rpc.remoting.RemoteObject">
+        <property name="destination" value="employeeService"/>
+        <property name="endpoint" value="http://localhost:8080/flex-java-mobile/messagebroker/amf"/>
+    </object>
+     
+</objects>

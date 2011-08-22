@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<list>
+    <employee>
+    	<id>1</id>
+    	<firstName>James</firstName>
+    	<lastName>King</lastName>
+    	<title>President and CEO</title>
+    	<city>Boston, MA</city>
+       	<managerId>0</managerId>
+    	<department>Corporate</department>
+    	<officePhone>617-000-0001</officePhone>
+    	<cellPhone>781-000-0001</cellPhone>
+    	<email>jking@fakemail.com</email>
+    	<picture>james_king.jpg</picture>
+    </employee>
+    <employee>
+    	<id>2</id>
+    	<firstName>Julie</firstName>
+    	<lastName>Taylor</lastName>
+    	<title>VP of Marketing</title>
+    	<city>Boston, MA</city>
+    	<department>Marketing</department>
+    	<managerId>1</managerId>
+    	<officePhone>617-000-0002</officePhone>
+    	<cellPhone>781-000-0002</cellPhone>
+    	<email>jtaylor@fakemail.com</email>
+    	<picture>julie_taylor.jpg</picture>
+    </employee>
+    <employee>
+    	<id>3</id>
+    	<firstName>Eugene</firstName>
+    	<lastName>Lee</lastName>
+    	<title>CFO</title>
+    	<city>Boston, MA</city>
+       	<managerId>1</managerId>
+    	<department>Accounting</department>
+    	<officePhone>617-000-0003</officePhone>
+    	<cellPhone>781-000-0003</cellPhone>
+    	<email>elee@fakemail.com</email>
+    	<picture>eugene_lee.jpg</picture>
+    </employee>
+    <employee>
+    	<id>4</id>
+    	<firstName>John</firstName>
+    	<lastName>Williams</lastName>
+    	<title>VP of Engineering</title>
+    	<city>Boston, MA</city>
+       	<managerId>1</managerId>
+    	<department>Engineering</department>
+    	<officePhone>617-000-0004</officePhone>
+    	<cellPhone>781-000-0004</cellPhone>
+    	<email>jwilliams@fakemail.com</email>
+    	<picture>john_williams.jpg</picture>
+    </employee>
+        <employee>
+    	<id>5</id>
+    	<firstName>Ray</firstName>
+    	<lastName>Moore</lastName>
+    	<title>VP of Sales</title>
+    	<city>Boston, MA</city>
+       	<managerId>1</managerId>
+    	<department>Sales</department>
+    	<officePhone>617-000-0005</officePhone>
+    	<cellPhone>781-000-0005</cellPhone>
+    	<email>rmoore@fakemail.com</email>
+    	<picture>ray_moore.jpg</picture>
+    </employee>
+    <employee>
+    	<id>6</id>
+    	<firstName>Paul</firstName>
+    	<lastName>Jones</lastName>
+    	<title>QA Manager</title>
+    	<city>Boston, MA</city>
+    	<department>Engineering</department>
+    	<managerId>4</managerId>
+    	<officePhone>617-000-0006</officePhone>
+    	<cellPhone>781-000-0006</cellPhone>
+    	<email>pjones@fakemail.com</email>
+    	<picture>paul_jones.jpg</picture>
+    </employee>
+    <employee>
+    	<id>7</id>
+    	<firstName>Paula</firstName>
+    	<lastName>Gates</lastName>
+    	<title>Software Architect</title>
+    	<city>Boston, MA</city>
+    	<managerId>4</managerId>
+    	<department>Engineering</department>
+    	<officePhone>617-000-0007</officePhone>
+    	<cellPhone>781-000-0007</cellPhone>
+    	<email>pgates@fakemail.com</email>
+    	<picture>paula_gates.jpg</picture>
+    </employee>
+    <employee>
+    	<id>8</id>
+    	<firstName>Lisa</firstName>
+    	<lastName>Wong</lastName>
+    	<title>Marketing Manager</title>
+    	<city>Boston, MA</city>
+       	<managerId>2</managerId>
+    	<department>Marketing</department>
+    	<officePhone>617-000-0008</officePhone>
+    	<cellPhone>781-000-0008</cellPhone>
+    	<email>lwong@fakemail.com</email>
+    	<picture>lisa_wong.jpg</picture>
+    </employee>
+    <employee>
+    	<id>9</id>
+    	<firstName>Gary</firstName>
+    	<lastName>Donovan</lastName>
+    	<title>Marketing</title>
+    	<city>Boston, MA</city>
+       	<managerId>2</managerId>
+    	<department>Marketing</department>
+    	<officePhone>617-000-0009</officePhone>
+    	<cellPhone>781-000-0009</cellPhone>
+    	<email>gdonovan@fakemail.com</email>
+    	<picture>gary_donovan.jpg</picture>
+    </employee>
+    <employee>
+    	<id>10</id>
+    	<firstName>Kathleen</firstName>
+    	<lastName>Byrne</lastName>
+    	<title>Sales Representative</title>
+    	<city>Boston, MA</city>
+       	<managerId>5</managerId>
+    	<department>Sales</department>
+    	<officePhone>617-000-0010</officePhone>
+    	<cellPhone>781-000-0010</cellPhone>
+    	<email>kbyrne@fakemail.com</email>
+    	<picture>kathleen_byrne.jpg</picture>
+    </employee>
+    <employee>
+    	<id>11</id>
+    	<firstName>Amy</firstName>
+    	<lastName>Jones</lastName>
+    	<title>Sales Representative</title>
+    	<city>Boston, MA</city>
+       	<managerId>5</managerId>
+    	<department>Sales</department>
+    	<officePhone>617-000-0011</officePhone>
+    	<cellPhone>781-000-0011</cellPhone>
+    	<email>ajones@fakemail.com</email>
+    	<picture>amy_jones.jpg</picture>
+    </employee>
+    <employee>
+    	<id>12</id>
+    	<firstName>Steven</firstName>
+    	<lastName>Wells</lastName>
+    	<title>Software Architect</title>
+    	<city>Boston, MA</city>
+       	<managerId>4</managerId>
+    	<department>Engineering</department>
+    	<officePhone>617-000-0012</officePhone>
+    	<cellPhone>781-000-0012</cellPhone>
+    	<email>swells@fakemail.com</email>
+    	<picture>steven_wells.jpg</picture>
+    </employee>
+
+</list>

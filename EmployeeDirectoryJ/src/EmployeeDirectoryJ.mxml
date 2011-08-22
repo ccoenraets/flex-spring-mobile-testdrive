@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+							xmlns:parsley="http://www.spicefactory.org/parsley"
+							xmlns:s="library://ns.adobe.com/flex/spark" firstView="views.EmployeeList">
+	
+	<fx:Declarations>
+		<parsley:ContextBuilder>
+			<parsley:XmlConfig file="config.xml"/>
+		</parsley:ContextBuilder>
+	</fx:Declarations>
+	
+	<s:navigationContent>
+		<s:Button label="Back" click="navigator.popView()"/>
+	</s:navigationContent>
+	
+</s:ViewNavigatorApplication>

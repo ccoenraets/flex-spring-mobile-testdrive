@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:parsley="http://www.spicefactory.org/parsley"
+		title="{data.firstName} {data.lastName}">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.remoting.RemoteObject;
+			
+			import spark.events.IndexChangeEvent;
+
+			public var service:RemoteObject;
+
+			[Bindable]
+			protected var actions:ArrayCollection;
+			
+			[Embed("assets/sms.png")]
+			private var smsIcon:Class;
+			
+			[Embed("assets/phone.png")]
+			private var phoneIcon:Class;
+			
+			[Embed("assets/mail.png")]
+			private var mailIcon:Class;
+
+			protected function resultHandler(event:ResultEvent):void
+			{
+				data = event.result;
+				actions = new ArrayCollection();
+				
+				if (data.officePhone)
+				{
+					actions.addItem({type: "tel", name: "Call office", 
+						details: data.officePhone, icon:phoneIcon});
+				}
+				if (data.cellPhone)
+				{
+					actions.addItem({type: "tel", name: "Call mobile", 
+						details: data.cellPhone, icon:phoneIcon});
+					actions.addItem({type: "sms", name: "SMS", 
+						details: data.cellPhone, icon:smsIcon});
+				}
+				if (data.email)
+				{
+					actions.addItem({type: "mailto", name: "Email", 
+						details: data.email, icon:mailIcon});
+				}
+				if (data.manager)
+				{
+					actions.addItem({type: "employee", name: "View manager", 
+						details: data.manager.firstName + " " + data.manager.lastName, employee: data.manager});
+				}
+				if (data.reportCount > 0)
+				{
+					actions.addItem({type: "reports", name: "View direct reports", 
+						details: "(" + data.reportCount + ")",	
+						employee: data});
+				}
+			}
+			
+			protected function list_changeHandler(event:IndexChangeEvent):void
+			{
+				var action:Object = list.selectedItem;
+				switch (action.type)
+				{
+					case "tel":
+						navigateToURL(new URLRequest("tel:"+action.details));
+						break;
+					
+					case "sms":
+						navigateToURL(new URLRequest("sms:"+action.details));
+						break;
+					
+					case "mailto":
+						navigateToURL(new URLRequest("mailto:"+action.details));
+						break;
+					case "employee":
+						navigator.pushView(EmployeeDetails, action.employee);
+						break;
+					
+					case "reports":
+						navigator.pushView(DirectReports, action.employee);
+						break;
+
+				}					
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<parsley:FastInject property="service" type="{RemoteObject}"
+							injectionComplete="responder.token = service.findById(data.id)"/>
+		
+		<s:CallResponder id="responder" result="resultHandler(event)"/>
+	</fx:Declarations>
+	
+	<s:HGroup verticalAlign="middle" gap="10">
+		
+		<s:Image source="assets/pics/{data.picture}" width="160" height="160"/>
+		
+		<s:VGroup>
+			<s:Label text="{data.firstName} {data.lastName}"/>
+			<s:Label text="{data.title}"/>
+			<s:Label text="{data.department}"/>
+			<s:Label text="{data.city}"/>
+		</s:VGroup>
+		
+	</s:HGroup>
+	
+	<s:List id="list" dataProvider="{actions}" 
+			top="160" left="0" right="0" bottom="0"
+			change="list_changeHandler(event)">
+		<s:itemRenderer>
+			<fx:Component>
+				<s:IconItemRenderer
+					paddingTop="8" paddingBottom="8" verticalGap="6"
+					labelField="name" 
+					messageField="details" 
+					decorator="{data.icon}"/>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>
+
+</s:View>

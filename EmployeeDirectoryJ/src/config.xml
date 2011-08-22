@@ -6,7 +6,7 @@
         
 	<object type="mx.rpc.remoting.RemoteObject">
         <property name="destination" value="employeeService"/>
-        <property name="endpoint" value="http://localhost:8080/flex-java-mobile/messagebroker/amf"/>
+        <property name="endpoint" value="http://localhost:8080/flex-spring-mobile/messagebroker/amf"/>
     </object>
      
 </objects>

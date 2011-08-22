@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<project name="Spring Flex Mobile Test Drive" basedir="."> 
+
+    <property name="webapp.dir" value="${basedir}/webapps/flex-spring-mobile"/> 
+
+	<target name="java" depends="clean">  
+       <mkdir dir="${webapp.dir}/WEB-INF/classes"/>
+       <javac srcdir="${basedir}/src" destdir="${webapp.dir}/WEB-INF/classes">  
+            <classpath>  
+                <fileset dir="${webapp.dir}/WEB-INF/lib">  
+                    <include name="**/*.jar" />  
+                </fileset>  
+            </classpath>  
+        </javac>  
+    </target>  
+
+	<target name="war" depends="java,copy">
+		<war destfile="flex-spring-mobile.war" webxml="${webapp.dir}/WEB-INF/web.xml">
+			<fileset dir="${webapp.dir}"/>
+			<lib dir="${webapp.dir}/WEB-INF/lib"/>
+			<classes dir="${webapp.dir}/WEB-INF/classes"/>
+		</war>
+	</target>	
+    
+	<target name="copy">
+		<copy file="${basedir}/src/flex/samples/employeedirectory/employees.xml" 
+			tofile="${webapp.dir}/WEB-INF/classes/flex/samples/employeedirectory/employees.xml"/>
+	</target>	
+
+	<target name="clean"> 
+        <delete dir="${webapp.dir}/WEB-INF/classes"/> 
+    </target> 
+	
+</project>

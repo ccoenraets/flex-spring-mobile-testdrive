@@ -1,0 +1,51 @@
+<list>
+
+	<stock>
+		<symbol>XOM</symbol>
+		<company>Exxon Mobile Corp</company>
+		<last>62.69</last>
+	</stock>
+
+	<stock>
+		<symbol>WMT</symbol>
+		<company>Wal-Mart Stores</company>
+		<last>53.06</last>
+	</stock>
+
+	<stock>
+		<symbol>CVX</symbol>
+		<company>Chevron Corp New</company>
+		<last>76.74</last>
+	</stock>
+
+	<stock>
+		<symbol>AIG</symbol>
+		<company>American International Group Inc</company>
+		<last>37.30</last>
+	</stock>
+
+	<stock>
+		<symbol>IBM</symbol>
+		<company>International Business Machines Corp.</company>
+		<last>129.05</last>
+	</stock>
+
+	<stock>
+		<symbol>SAP</symbol>
+		<company>SAP AG</company>
+		<last>43.64</last>
+	</stock>
+
+	<stock>
+		<symbol>MOT</symbol>
+		<company>Motorola, Inc.</company>
+		<last>6.81</last>
+	</stock>
+
+	<stock>
+		<symbol>MCD</symbol>
+		<company>McDonald's Corporation</company>
+		<last>69.47</last>
+	</stock>
+
+</list>

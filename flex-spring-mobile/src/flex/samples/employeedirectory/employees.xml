@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<list>
+    <employee>
+    	<id>1</id>
+    	<firstName>Barack</firstName>
+    	<lastName>Obama</lastName>
+    	<title>President</title>
+    	<city>Washington, DC</city>
+    	<department>White House</department>
+    	<managerId>0</managerId>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>barack.obama@notmyrealmail.com</email>
+    	<picture>Barack_Obama.jpg</picture>
+    </employee>
+    <employee>
+    	<id>2</id>
+    	<firstName>Joe</firstName>
+    	<lastName>Biden</lastName>
+    	<title>Vice President</title>
+    	<city>Washington, DC</city>
+    	<department>White House</department>
+    	<managerId>1</managerId>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>joe.biden@notmyrealmail.com</email>
+    	<picture>Joe_Biden.jpg</picture>
+    </employee>
+    <employee>
+    	<id>3</id>
+    	<firstName>Hillary</firstName>
+    	<lastName>Clinton</lastName>
+    	<title>Secretary of State</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>State Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>hillary.clinton@notmyrealmail.com</email>
+    	<picture>Hillary_Clinton.jpg</picture>
+    </employee>
+    <employee>
+    	<id>4</id>
+    	<firstName>Timothy</firstName>
+    	<lastName>Geithner</lastName>
+    	<title>Secretary of the Treasury</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Treasury Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>tim.geithner@notmyrealmail.com</email>
+    	<picture>Tim_Geithner.jpg</picture>
+    </employee>
+    <employee>
+    	<id>5</id>
+    	<firstName>Robert</firstName>
+    	<lastName>Gates</lastName>
+    	<title>Secretary of Defense</title>
+    	<city>Washington, DC</city>
+    	<managerId>1</managerId>
+    	<department>Defense Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>robert.gates@notmyrealmail.com</email>
+    	<picture>Robert_Gates.jpg</picture>
+    </employee>
+    <employee>
+    	<id>6</id>
+    	<firstName>Eric</firstName>
+    	<lastName>Holder</lastName>
+    	<title>Attorney General</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Justice Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>eric.holder@notmyrealmail.com</email>
+    	<picture>Eric_Holder.jpg</picture>
+    </employee>
+    <employee>
+    	<id>7</id>
+    	<firstName>Kenneth</firstName>
+    	<lastName>Salazar</lastName>
+    	<title>Interior Department</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Department of the Interior</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>ken.salazar@notmyrealmail.com</email>
+    	<picture>Ken_Salazar.jpg</picture>
+    </employee>
+    <employee>
+    	<id>8</id>
+    	<firstName>Thomas</firstName>
+    	<lastName>Vilsack</lastName>
+    	<title>Agriculture Department</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Department of Agriculture</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>tom.vilsack@notmyrealmail.com</email>
+    	<picture>Tom_Vilsack.jpg</picture>
+    </employee>
+    <employee>
+    	<id>9</id>
+    	<firstName>Gary</firstName>
+    	<lastName>Locke</lastName>
+    	<title>Commerce Department</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Department of Commerce</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>gary.locke@notmyrealmail.com</email>
+    	<picture>Gary_Locke.jpg</picture>
+    </employee>
+    <employee>
+    	<id>10</id>
+    	<firstName>Hilda</firstName>
+    	<lastName>Solis</lastName>
+    	<title>Secretary of Labor</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Department of Labor</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>hilda.solis@notmyrealmail.com</email>
+    	<picture>Hilda_Solis.jpg</picture>
+    </employee>
+    <employee>
+    	<id>11</id>
+    	<firstName>Kathleen</firstName>
+    	<lastName>Sebelius</lastName>
+    	<title>Secretary of Health</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Health Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>kathleen_sebelius@notmyrealmail.com</email>
+    	<picture>Kathleen_Sebelius.jpg</picture>
+    </employee>
+    <employee>
+    	<id>12</id>
+    	<firstName>Shaun</firstName>
+    	<lastName>Donovan</lastName>
+    	<title>Secretary of Housing</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Housing Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>shaun_donovan@notmyrealmail.com</email>
+    	<picture>Shaun_Donovan.jpg</picture>
+    </employee>
+    <employee>
+    	<id>13</id>
+    	<firstName>Ray</firstName>
+    	<lastName>LaHood</lastName>
+    	<title>Secretary of Transportation</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Transportation Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>ray_lahood@notmyrealmail.com</email>
+    	<picture>Ray_Lahood.jpg</picture>
+    </employee>
+    <employee>
+    	<id>14</id>
+    	<firstName>Steven</firstName>
+    	<lastName>Chu</lastName>
+    	<title>Secretary of Energy</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Energy Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>steven_chu@notmyrealmail.com</email>
+    	<picture>Steven_Chu.jpg</picture>
+    </employee>
+    <employee>
+    	<id>15</id>
+    	<firstName>Arne</firstName>
+    	<lastName>Duncan</lastName>
+    	<title>Secretary of Education</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Education Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>arne_duncan@notmyrealmail.com</email>
+    	<picture>Arne_Duncan.jpg</picture>
+    </employee>
+    <employee>
+    	<id>16</id>
+    	<firstName>Eric</firstName>
+    	<lastName>Shinseki</lastName>
+    	<title>Secretary of Veterans Affairs</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Veterans Affairs Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>eric_shinseki@notmyrealmail.com</email>
+    	<picture>Eric_Shinseki.jpg</picture>
+    </employee>
+    <employee>
+    	<id>17</id>
+    	<firstName>Janet</firstName>
+    	<lastName>Napolitano</lastName>
+    	<title>Secretary of Homeland Security</title>
+    	<city>Washington, DC</city>
+       	<managerId>1</managerId>
+    	<department>Homeland Security Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>janet_napolitano@notmyrealmail.com</email>
+    	<picture>Janet_Napolitano.jpg</picture>
+    </employee>
+    <employee>
+    	<id>18</id>
+    	<firstName>Gordon</firstName>
+    	<lastName>England</lastName>
+    	<title>Dep. Secretary of Defense</title>
+    	<city>Washington, DC</city>
+       	<managerId>5</managerId>
+    	<department>Defense Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>gordon.england@notmyrealmail.com</email>
+    	<picture>Gordon_England.jpg</picture>
+    </employee>
+    <employee>
+    	<id>19</id>
+    	<firstName>William</firstName>
+    	<lastName>Lynn</lastName>
+    	<title>Dep. Secretary of Defense</title>
+    	<city>Washington, DC</city>
+       	<managerId>5</managerId>
+    	<department>Defense Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>william.lynn@notmyrealmail.com</email>
+    	<picture>William_Lynn.jpg</picture>
+    </employee>
+    <employee>
+    	<id>20</id>
+    	<firstName>Jim</firstName>
+    	<lastName>Steinberg</lastName>
+    	<title>Dep. Secretary of State</title>
+    	<city>Washington, DC</city>
+       	<managerId>3</managerId>
+    	<department>State Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>jim.steinberg@notmyrealmail.com</email>
+    	<picture>Jim_Steinberg.jpg</picture>
+    </employee>
+    <employee>
+    	<id>21</id>
+    	<firstName>Jacob</firstName>
+    	<lastName>Lew</lastName>
+    	<title>Dep. Secretary of State</title>
+    	<city>Washington, DC</city>
+       	<managerId>3</managerId>
+    	<department>State Department</department>
+    	<officePhone>202-000-0000</officePhone>
+    	<cellPhone>202-111-1111</cellPhone>
+    	<email>jacob.lew@notmyrealmail.com</email>
+    	<picture>Jacob_lew.jpg</picture>
+    </employee>
+
+</list>

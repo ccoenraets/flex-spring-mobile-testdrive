@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:flex="http://www.springframework.org/schema/flex"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/flex 
+		http://www.springframework.org/schema/flex/spring-flex-1.0.xsd">
+ 
+		<flex:message-broker>
+			<flex:message-service
+				default-channels="my-streaming-amf,my-longpolling-amf,my-polling-amf" />
+		</flex:message-broker>
+		
+		<!-- Messaging destinations -->
+		<flex:message-destination id="market-feed" allow-subtopics="true" subtopic-separator="." />
+
+		<!-- MessageTemplate makes it easy to publish messages -->
+		<bean id="defaultMessageTemplate" class="org.springframework.flex.messaging.MessageTemplate" />
+
+		<!-- Pojo used to start and stop the data feed that pushes data in the 'market-feed' destination -->
+		<bean id="feedManager" class="flex.samples.spring.marketfeed.MarketFeed">
+			<constructor-arg ref="defaultMessageTemplate" />
+			<constructor-arg value="stocklist.xml" />
+			<flex:remoting-destination />
+		</bean>
+
+</beans>

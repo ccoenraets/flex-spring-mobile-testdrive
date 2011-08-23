@@ -31,6 +31,8 @@
 			
 			public function drawChart(e:Event=null):void
 			{
+				trace("stock change "+_stock.symbol+" "+_stock.last);
+
 				var history:ArrayCollection = _stock.history;
 				minValue = history[0].last;
 				maxValue = history[0].last;

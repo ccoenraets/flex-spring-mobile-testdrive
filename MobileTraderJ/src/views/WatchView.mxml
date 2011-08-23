@@ -11,8 +11,15 @@
 	
 	<fx:Script>
 		<![CDATA[
-
 			import components.ErrorDialog;
+			
+			import controller.Feed;
+			
+			import mx.core.FlexGlobals;
+			
+			import spark.events.IndexChangeEvent;
+			
+			protected var feed:Feed = FlexGlobals.topLevelApplication.feed;
 			
 			protected function activateHandler():void 
 			{
@@ -24,18 +31,27 @@
 				feed.unsubscribe();
 			}
 			
+			protected function list_changeHandler(event:IndexChangeEvent):void
+			{
+				navigator.pushView(StockView, list.selectedItem);
+				list.selectedIndex = -1;
+			}
+			
 		]]>
 	</fx:Script>
 	
 	<fx:Declarations>
 		
+		<!--
 		<controller:Feed id="feed" fault="ErrorDialog.show(event.faultDetail)"/>
+		-->
 		
 	</fx:Declarations>
 	
 	<views:Header/>
 	
 	<s:List id="list" itemRenderer="renderers.StockRenderer" borderVisible="false" dataProvider="{feed.stockList}"
-			top="51" left="0" right="0" bottom="0"/>
+			top="51" left="0" right="0" bottom="0"
+			change="list_changeHandler(event)"/>
 	
 </s:View>

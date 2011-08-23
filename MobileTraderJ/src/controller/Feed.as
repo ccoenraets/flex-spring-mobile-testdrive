@@ -19,13 +19,17 @@ package controller
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.remoting.RemoteObject;
+	
+	import spark.managers.PersistenceManager;
 
 	[Event(name="fault", type="mx.events.DynamicEvent")]
 	public class Feed extends EventDispatcher
 	{
-		public static var messageBrokerURL:String = "http://localhost:8080/flex-spring-mobile/messagebroker";
+		protected var persistenceManager:PersistenceManager = new PersistenceManager();;
 		
-		public static var channel:String = "streamingamf";
+		public var messageBrokerURL:String = "http://localhost:8080/flex-spring-mobile/messagebroker";
+		
+		public var channel:String = "streamingamf";
 		
 		protected var feedManager:RemoteObject;
 		
@@ -40,12 +44,26 @@ package controller
 		
 		public function Feed()
 		{
-			feedManager = new RemoteObject("feedManager");
-			feedManager.endpoint = messageBrokerURL + "/amf";
-			
+			loadConfig();
+		}
+		
+		public function getStocks():void
+		{
 			trace("getStocks");
 			token = feedManager.getStocks();
 			token.addResponder(new AsyncResponder(getStocks_result, feedManager_fault));
+		}
+
+		public function start():void
+		{
+			trace("start");
+			feedManager.start();
+		}
+
+		public function stop():void
+		{
+			trace("stop");
+			feedManager.stop();
 		}
 
 		public function subscribe():void
@@ -101,6 +119,13 @@ package controller
 				stock.high = changedStock.high;
 				stock.low = changedStock.low;
 				stock.date = changedStock.date;
+				
+				if (!stock.history)
+					stock.history = new ArrayCollection();
+				if (stock.history.length == 40)
+					stock.history.removeItemAt(0);
+				stock.history.addItem(changedStock);
+				
 			}
 		}
 		
@@ -108,30 +133,72 @@ package controller
 		{
 			trace("error:" + event.fault.faultString);
 			if (event.fault.faultDetail)
-			{
-				trace(event.fault.faultDetail);
-				var e:DynamicEvent = new DynamicEvent("fault");
-				e.faultDetail = event.fault.faultDetail;
-				e.faultString = event.fault.faultString;
-				dispatchEvent(e);
-			}
+				dispatchFaultEvent(event.fault.faultString, event.fault.faultDetail);
 		}
 
 		protected function consumer_fault(event:MessageFaultEvent):void
 		{
 			if (event.faultDetail)
-			{
-				trace(event.faultDetail);
-				var e:DynamicEvent = new DynamicEvent("fault");
-				e.faultDetail = event.faultDetail;
-				e.faultString = event.faultString;
-				dispatchEvent(e);
-			}
+				dispatchFaultEvent(event.faultString, event.faultDetail);
 		}
 		
+		public function setConfig(messageBrokerURL:String, channel:String):void
+		{
+			this.messageBrokerURL = messageBrokerURL;
+			this.channel = channel;
+			persistenceManager.setProperty("messageBrokerURL", messageBrokerURL);
+			persistenceManager.setProperty("channel", channel);
+			persistenceManager.save();
+			
+			feedManager = new RemoteObject("feedManager");
+			feedManager.endpoint = messageBrokerURL + "/amf";
+			getStocks();
+		}
 		
-
-	
+		protected function loadConfig():void
+		{
+			if (!persistenceManager.load())
+			{
+				dispatchFaultEvent("Configuration Error", "Configure MessageBroker URL in Settings Tab");
+				return;
+			}
+			
+			var property:Object = persistenceManager.getProperty("messageBrokerURL");
+			if (property) 
+			{
+				messageBrokerURL = property.toString();
+			}
+			else
+			{
+				dispatchFaultEvent("Configuration Error", "Configure MessageBroker URL in Settings Tab");
+				return;
+			}
+			
+			property = persistenceManager.getProperty("channel");
+			if (property) 
+			{
+				channel = property.toString();
+			}
+			else
+			{
+				dispatchFaultEvent("Configuration Error", "Configure channel in Settings Tab");
+				return;
+			}
+			
+			feedManager = new RemoteObject("feedManager");
+			feedManager.endpoint = messageBrokerURL + "/amf";
+			getStocks();
+			
+		}
+		
+		protected function dispatchFaultEvent(faultString:String, faultDetail:String):void
+		{
+			var e:DynamicEvent = new DynamicEvent("fault");
+			e.faultString = faultString;
+			e.faultDetail = faultDetail;
+			dispatchEvent(e);
+		}
+		
 	
 	}
 }

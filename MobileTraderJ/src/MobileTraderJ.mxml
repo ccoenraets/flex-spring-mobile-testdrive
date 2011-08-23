@@ -1,49 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:TabbedViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
 								  xmlns:s="library://ns.adobe.com/flex/spark"
+								  xmlns:controller="controller.*"
 								  splashScreenImage="@Embed('assets/splash.jpg')" 
-								  splashScreenScaleMode="stretch"
-								  creationComplete="loadConfig()">
+								  splashScreenScaleMode="stretch">
 
 	<fx:Style source="styles.css"/>
-	
 	<fx:Script>
 		<![CDATA[
-			import controller.Feed;
-			
-			protected function loadConfig():void
-			{
-				if (!persistenceManager.load())
-				{
-					tabbedNavigator.selectedIndex = 3;
-					return;
-				}
-
-				var property:Object = persistenceManager.getProperty("messageBrokerURL");
-				if (property) 
-				{
-					Feed.messageBrokerURL = property.toString();
-				}
-				else
-				{
-					tabbedNavigator.selectedIndex = 3;
-					return;
-				}
-
-				property = persistenceManager.getProperty("channel");
-				if (property) 
-				{
-					Feed.channel = property.toString();
-				}
-				else
-				{
-					tabbedNavigator.selectedIndex = 3;
-				}
-			}
-
-			
+			import components.ErrorDialog;
 		]]>
 	</fx:Script>
+	
+	<fx:Declarations>
+		<controller:Feed id="feed" fault="ErrorDialog.show(event.faultString + ' ' + event.faultDetail)"/>
+	</fx:Declarations>
 	
 	<s:ViewNavigator label="Assets" firstView="views.AssetsView" width="100%" height="100%" icon="@Embed('assets/money_48.png')"/>
 	<s:ViewNavigator label="Watch" firstView="views.WatchView" width="100%" height="100%" icon="@Embed('assets/chart_line_48.png')"/>

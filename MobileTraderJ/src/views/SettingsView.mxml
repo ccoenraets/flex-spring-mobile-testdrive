@@ -5,39 +5,31 @@
 		creationComplete="creationCompleteHandler()">
 	<fx:Script>
 		<![CDATA[
-			import components.ErrorDialog;
-			
 			import controller.Feed;
 			
-			import spark.managers.PersistenceManager;
+			import mx.core.FlexGlobals;
 			
-			protected var persistenceManager:PersistenceManager = new PersistenceManager();;
+			protected var feed:Feed = FlexGlobals.topLevelApplication.feed;
 			
 			protected function creationCompleteHandler():void
 			{
-				messageBrokerURL.text = Feed.messageBrokerURL;
-				channelGroup.selectedValue = Feed.channel;
+				messageBrokerURL.text = feed.messageBrokerURL;
+				channelGroup.selectedValue = feed.channel;
 			}
 			
 			protected function save():void
 			{
-				Feed.messageBrokerURL = messageBrokerURL.text;
-				Feed.channel = channelGroup.selectedValue as String;
-				persistenceManager.setProperty("messageBrokerURL", messageBrokerURL.text);
-				persistenceManager.setProperty("channel", channelGroup.selectedValue);
-				persistenceManager.save();
+				feed.setConfig(messageBrokerURL.text, channelGroup.selectedValue as String);
 			}
 			
 			protected function startFeed():void
 			{
-				feedManager.endpoint = messageBrokerURL.text + "/amf";
-				feedManager.start();
+				feed.start();
 			}
 			
 			protected function stopFeed():void
 			{
-				feedManager.endpoint = messageBrokerURL.text + "/amf";
-				feedManager.stop();
+				feed.stop();
 			}
 			
 			
@@ -45,8 +37,6 @@
 	</fx:Script>
 	<fx:Declarations>
 		<s:RadioButtonGroup id="channelGroup"/>
-		<s:RemoteObject id="feedManager" destination="feedManager"
-						fault="ErrorDialog.show(event.fault.faultString + ' ' + event.fault.faultDetail)"/>
 	</fx:Declarations>
 	
 	<s:layout>

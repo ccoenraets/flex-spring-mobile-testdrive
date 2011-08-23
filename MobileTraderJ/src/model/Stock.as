@@ -1,6 +1,8 @@
 // Author: Christophe Coenraets - http://coenraets.org 
 package model
 {
+	import mx.collections.ArrayCollection;
+
 	[RemoteClass(alias="flex.samples.marketfeed.Stock")]
 	[Bindable]
 	public class Stock
@@ -13,6 +15,9 @@ package model
 		public var last:Number;
 		public var change:Number = 0;
 		public var date:Date;
+		
+		[Transient]
+		public var history:ArrayCollection;
 	}
 	
 }

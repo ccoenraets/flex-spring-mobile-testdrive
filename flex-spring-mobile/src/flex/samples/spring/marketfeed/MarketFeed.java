@@ -3,6 +3,8 @@ package flex.samples.spring.marketfeed;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -81,9 +83,12 @@ public class MarketFeed {
         return list;
     }
 
-    public List<Stock> getStocks() {
-    	return stockList;
-    }
+	@SuppressWarnings("unchecked")
+	public List<Stock> getStocks() {
+		List<Stock> sortedList = (List<Stock>)((ArrayList<Stock>) stockList).clone();
+		Collections.sort(sortedList, new StockComparator());
+		return sortedList;
+	}
     
     private String getStringValue(Node node, String name) {
         return ((Element) node).getElementsByTagName(name).item(0).getFirstChild().getNodeValue();
@@ -170,5 +175,14 @@ public class MarketFeed {
         }
 
     }
+    
+	public class StockComparator implements Comparator<Stock> {
+
+		public int compare(Stock stock1, Stock stock2) {
+			return stock1.getSymbol().compareTo(stock2.getSymbol());
+		}
+		
+	}
+
 
 }

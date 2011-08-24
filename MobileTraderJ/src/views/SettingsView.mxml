@@ -9,11 +9,12 @@
 			
 			import mx.core.FlexGlobals;
 			
+			[Bindable]
 			protected var feed:Feed = FlexGlobals.topLevelApplication.feed;
 			
 			protected function creationCompleteHandler():void
 			{
-				messageBrokerURL.text = feed.messageBrokerURL;
+				messageBrokerURL.text = feed.messageBrokerURL ? feed.messageBrokerURL : "http://localhost:8080/flex-spring-mobile/messagebroker";
 				channelGroup.selectedValue = feed.channel;
 			}
 			
@@ -24,12 +25,14 @@
 			
 			protected function startFeed():void
 			{
-				feed.start(messageBrokerURL.text, channelGroup.selectedValue as String);
+				save();
+				feed.start();
 			}
 			
 			protected function stopFeed():void
 			{
-				feed.stop(messageBrokerURL.text, channelGroup.selectedValue as String);
+				save();
+				feed.stop();
 			}
 			
 			
@@ -39,31 +42,34 @@
 		<s:RadioButtonGroup id="channelGroup"/>
 	</fx:Declarations>
 	
-	<s:layout>
-		<s:VerticalLayout paddingTop="20" paddingLeft="20" paddingRight="20" paddingBottom="20"/>
-	</s:layout>
-	
-	<s:Label text="Messagebroker base URL:"/>
-	<s:TextArea id="messageBrokerURL" width="100%" height="70"/>
-	<s:Label text="For example: http://localhost:8080/flex-spring-mobile/messagebroker" width="100%" fontSize="14" color="#777777"/>
-			 
-	<s:Spacer height="10"/>
-	
-	<s:Label text="Channel type for data push:" width="100%"/>
-	<s:RadioButton label="Streaming" value="streamingamf" group="{channelGroup}"/>
-	<s:RadioButton label="Long Polling" value="amflongpolling" group="{channelGroup}"/>
-	<s:RadioButton label="Polling" value="amfpolling" group="{channelGroup}"/>
-	
-	<s:Spacer height="10"/>
+	<s:Scroller top="0" left="0" right="0" bottom="0">
+		
+		<s:VGroup width="100%" paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
 
-	<s:Button label="Save Settings" width="100%" click="save()"/>
-
-	<s:Spacer height="20"/>
-
-	<s:Label text="Make sure the MessageBroker URL is valid before starting/stopping the server feed." width="100%"/>
-	<s:HGroup width="100%">
-		<s:Button label="Start Server Feed" width="100%" click="startFeed()"/>
-		<s:Button label="Stop Server Feed" width="100%" click="stopFeed()"/>
-	</s:HGroup>
+			<s:Label text="Messagebroker base URL:"/>
+			<s:TextArea id="messageBrokerURL" width="100%" height="70"/>
+			<s:Label text="For example: http://localhost:8080/flex-spring-mobile/messagebroker" width="100%" fontSize="14" color="#777777"/>
+			
+			<s:Spacer height="10"/>
+			
+			<s:Label text="Channel type for data push:" width="100%"/>
+			<s:RadioButton label="Streaming" value="streamingamf" group="{channelGroup}"/>
+			<s:RadioButton label="Long Polling" value="amflongpolling" group="{channelGroup}"/>
+			<s:RadioButton label="Polling" value="amfpolling" group="{channelGroup}"/>
+			
+			<s:Spacer height="10"/>
+			
+			<s:Button label="Save Settings" width="100%" click="save()" enabled="{messageBrokerURL.text != feed.messageBrokerURL}"/>
+			
+			<s:Spacer height="20"/>
+			
+			<s:Label text="Make sure the MessageBroker URL is valid before starting/stopping the server feed." width="100%"/>
+			<s:HGroup width="100%">
+				<s:Button label="Start Server Feed" width="100%" click="startFeed()"/>
+				<s:Button label="Stop Server Feed" width="100%" click="stopFeed()"/>
+			</s:HGroup>
+			
+		</s:VGroup>
+	</s:Scroller>	
 	
 </s:View>

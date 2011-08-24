@@ -19,6 +19,7 @@
 			
 			import spark.events.IndexChangeEvent;
 			
+			[Bindable]
 			protected var feed:Feed = FlexGlobals.topLevelApplication.feed;
 			
 			protected function activateHandler():void 

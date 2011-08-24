@@ -22,6 +22,7 @@ package controller
 	
 	import spark.managers.PersistenceManager;
 
+	[Bindable]
 	[Event(name="fault", type="mx.events.DynamicEvent")]
 	[Event(name="configFault", type="mx.events.DynamicEvent")]
 	public class Feed extends EventDispatcher
@@ -36,7 +37,6 @@ package controller
 		
 		protected var consumer:MultiTopicConsumer;
 		
-		[Bindable]
 		public var stockList:ArrayCollection;
 		
 		protected var stockMap:Dictionary;
@@ -54,17 +54,13 @@ package controller
 			token.addResponder(new AsyncResponder(getStocks_result, feedManager_fault));
 		}
 
-		public function start(messageBrokerURL:String, channel:String):void
+		public function start():void
 		{
-			trace("start");
-			setConfig(messageBrokerURL, channel);
 			feedManager.start();
 		}
 
-		public function stop(messageBrokerURL:String, channel:String):void
+		public function stop():void
 		{
-			trace("stop");
-			setConfig(messageBrokerURL, channel);
 			feedManager.stop();
 		}
 

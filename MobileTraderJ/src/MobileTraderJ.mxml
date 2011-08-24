@@ -4,7 +4,6 @@
 								  xmlns:controller="controller.*"
 								  splashScreenImage="@Embed('assets/splash.jpg')" 
 								  splashScreenScaleMode="stretch"
-								  initialize="persistenceManager.clear()"
 								  creationComplete="feed.loadConfig()">
 
 	<fx:Style source="styles.css"/>
@@ -13,9 +12,6 @@
 		<![CDATA[
 			import components.ErrorDialog;
 			
-			import controller.Feed;
-			
-			//public var feed:Feed;
 		]]>
 	</fx:Script>
 	

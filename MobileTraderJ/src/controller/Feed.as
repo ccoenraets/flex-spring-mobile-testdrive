@@ -23,11 +23,12 @@ package controller
 	import spark.managers.PersistenceManager;
 
 	[Event(name="fault", type="mx.events.DynamicEvent")]
+	[Event(name="configFault", type="mx.events.DynamicEvent")]
 	public class Feed extends EventDispatcher
 	{
 		protected var persistenceManager:PersistenceManager = new PersistenceManager();;
 		
-		public var messageBrokerURL:String = "http://localhost:8080/flex-spring-mobile/messagebroker";
+		public var messageBrokerURL:String;
 		
 		public var channel:String = "streamingamf";
 		
@@ -44,7 +45,6 @@ package controller
 		
 		public function Feed()
 		{
-			loadConfig();
 		}
 		
 		public function getStocks():void
@@ -54,15 +54,17 @@ package controller
 			token.addResponder(new AsyncResponder(getStocks_result, feedManager_fault));
 		}
 
-		public function start():void
+		public function start(messageBrokerURL:String, channel:String):void
 		{
 			trace("start");
+			setConfig(messageBrokerURL, channel);
 			feedManager.start();
 		}
 
-		public function stop():void
+		public function stop(messageBrokerURL:String, channel:String):void
 		{
 			trace("stop");
+			setConfig(messageBrokerURL, channel);
 			feedManager.stop();
 		}
 
@@ -104,7 +106,6 @@ package controller
 				consumer.addSubscription(stock.symbol);
 			}
 			consumer.subscribe();
-//			list.dataProvider = stockList;
 		}
 		
 		protected function messageHandler(event:MessageEvent):void 
@@ -131,35 +132,37 @@ package controller
 		
 		protected function feedManager_fault(event:FaultEvent, token:AsyncToken):void
 		{
-			trace("error:" + event.fault.faultString);
 			if (event.fault.faultDetail)
-				dispatchFaultEvent(event.fault.faultString, event.fault.faultDetail);
+				dispatchFaultEvent("fault", event.fault.faultString, event.fault.faultDetail);
 		}
 
 		protected function consumer_fault(event:MessageFaultEvent):void
 		{
 			if (event.faultDetail)
-				dispatchFaultEvent(event.faultString, event.faultDetail);
+				dispatchFaultEvent("fault", event.faultString, event.faultDetail);
 		}
 		
 		public function setConfig(messageBrokerURL:String, channel:String):void
 		{
-			this.messageBrokerURL = messageBrokerURL;
-			this.channel = channel;
-			persistenceManager.setProperty("messageBrokerURL", messageBrokerURL);
-			persistenceManager.setProperty("channel", channel);
-			persistenceManager.save();
-			
-			feedManager = new RemoteObject("feedManager");
-			feedManager.endpoint = messageBrokerURL + "/amf";
-			getStocks();
+			if (messageBrokerURL != this.messageBrokerURL || channel != this.channel)
+			{
+				this.messageBrokerURL = messageBrokerURL;
+				this.channel = channel;
+				persistenceManager.setProperty("messageBrokerURL", messageBrokerURL);
+				persistenceManager.setProperty("channel", channel);
+				persistenceManager.save();
+				
+				feedManager = new RemoteObject("feedManager");
+				feedManager.endpoint = messageBrokerURL + "/amf";
+				getStocks();
+			}
 		}
 		
-		protected function loadConfig():void
+		public function loadConfig():void
 		{
 			if (!persistenceManager.load())
 			{
-				dispatchFaultEvent("Configuration Error", "Configure MessageBroker URL in Settings Tab");
+				dispatchFaultEvent("configFault", "Configuration Error", "Configure MessageBroker URL in Settings Tab");
 				return;
 			}
 			
@@ -170,7 +173,7 @@ package controller
 			}
 			else
 			{
-				dispatchFaultEvent("Configuration Error", "Configure MessageBroker URL in Settings Tab");
+				dispatchFaultEvent("configFault", "Configuration Error", "Please configure the MessageBroker URL in Settings Tab");
 				return;
 			}
 			
@@ -181,7 +184,7 @@ package controller
 			}
 			else
 			{
-				dispatchFaultEvent("Configuration Error", "Configure channel in Settings Tab");
+				dispatchFaultEvent("configFault", "Configuration Error", "Please configure channel in Settings Tab");
 				return;
 			}
 			
@@ -191,9 +194,9 @@ package controller
 			
 		}
 		
-		protected function dispatchFaultEvent(faultString:String, faultDetail:String):void
+		protected function dispatchFaultEvent(type:String, faultString:String, faultDetail:String):void
 		{
-			var e:DynamicEvent = new DynamicEvent("fault");
+			var e:DynamicEvent = new DynamicEvent(type);
 			e.faultString = faultString;
 			e.faultDetail = faultDetail;
 			dispatchEvent(e);

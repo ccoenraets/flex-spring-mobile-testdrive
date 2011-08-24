@@ -3,17 +3,26 @@
 								  xmlns:s="library://ns.adobe.com/flex/spark"
 								  xmlns:controller="controller.*"
 								  splashScreenImage="@Embed('assets/splash.jpg')" 
-								  splashScreenScaleMode="stretch">
+								  splashScreenScaleMode="stretch"
+								  initialize="persistenceManager.clear()"
+								  creationComplete="feed.loadConfig()">
 
 	<fx:Style source="styles.css"/>
+	
 	<fx:Script>
 		<![CDATA[
 			import components.ErrorDialog;
+			
+			import controller.Feed;
+			
+			//public var feed:Feed;
 		]]>
 	</fx:Script>
 	
 	<fx:Declarations>
-		<controller:Feed id="feed" fault="ErrorDialog.show(event.faultString + ' ' + event.faultDetail)"/>
+		<controller:Feed id="feed" 
+						 configFault="tabbedNavigator.selectedIndex = 3"
+						 fault="ErrorDialog.show(event.faultString + ' ' + event.faultDetail);"/>
 	</fx:Declarations>
 	
 	<s:ViewNavigator label="Assets" firstView="views.AssetsView" width="100%" height="100%" icon="@Embed('assets/money_48.png')"/>
